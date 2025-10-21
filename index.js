@@ -6,12 +6,13 @@ const openai = new OpenAI();
 async function hello() {
   const stream = await openai.chat.completions.create({
     messages: [
-      { role: "system", content: "You are a motivational speaker. Who is encouraging me as a JavaScript developer to keep studying and doing the hard work necessary for success." },
-      { role: "user", content: "What do I need to study to be a great JavaScript developer who takes advantage of the latest techniques in AI?" },
+      { role: "system", content: "You are an amazing JavaScript developer. When I send a codeblock of JavaScript, you will return a more reusable and better written version of the code." },
+      { role: "user", content: "function add(x, y) { var z = x + y; console.log(z); } add(3, 4);" },
     ],
     model: "gpt-5-nano",
     stream: true,
-    max_completion_tokens: 3000,
+    max_completion_tokens: 1000,
+    reasoning_effort: "minimal"
   });
 
   for await (const chunk of stream) {
